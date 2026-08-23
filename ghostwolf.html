@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GhostWolf Community</title>
+
+    <meta name="description" content="GhostWolf Community – Gaming, Trucking, Events und gemeinsame Abenteuer.">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #050505;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* HINTERGRUND */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.65),
+                    rgba(0, 0, 0, 0.96)
+                ),
+                url("images/ghostwolf-bg.jpg");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 75px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 5%;
+
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(10px);
+
+            border-bottom: 1px solid #333;
+
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .logo span {
+            color: #e00000;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e00000;
+        }
+
+        .discord-button {
+            padding: 10px 15px;
+            background: #c00000;
+            border-radius: 5px;
+        }
+
+        .menu-button {
+            display: none;
+            background: #111;
+            color: white;
+            border: 1px solid #555;
+            border-radius: 5px;
+            padding: 8px 12px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 120px 20px 80px;
+        }
+
+        .hero-logo {
+            width: 300px;
+            max-width: 80vw;
+
+            margin-bottom: 25px;
+
+            filter: drop-shadow(0 0 25px rgba(255, 0, 0, 0.3));
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 7vw, 85px);
+            font-style: italic;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .hero h1 span {
+            color: #e00000;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: 25px auto;
+
+            color: #aaa;
+            line-height: 1.7;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 22px;
+            border-radius: 5px;
+
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+        }
+
+        .btn-red {
+            background: linear-gradient(135deg, #e00000, #700000);
+            border: 1px solid #ff3030;
+        }
+
+        .btn-dark {
+            background: #111;
+            border: 1px solid #555;
+        }
+
+        /* SEKTIONEN */
+
+        section {
+            scroll-margin-top: 75px;
+        }
+
+        .section {
+            padding: 100px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title small {
+            color: #e00000;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .section-title h2 {
+            font-size: clamp(35px, 5vw, 60px);
+            margin-top: 10px;
+            font-style: italic;
+            text-transform: uppercase;
+        }
+
+        .section-title h2 span {
+            color: #e00000;
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 15px auto;
+            color: #888;
+            line-height: 1.7;
+        }
+
+        /* COMMUNITY */
+
+        .community {
+            background: rgba(0, 0, 0, 0.85);
+        }
+
+        .feature-grid {
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+
+            border: 1px solid #333;
+        }
+
+        .feature {
+            padding: 35px 20px;
+            text-align: center;
+
+            background: #0b0b0b;
+            border-right: 1px solid #333;
+
+            transition: 0.3s;
+        }
+
+        .feature:last-child {
+            border-right: none;
+        }
+
+        .feature:hover {
+            background: #160000;
+        }
+
+        .feature-icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            font-size: 15px;
+            text-transform: uppercase;
+        }
+
+        .feature p {
+            margin-top: 10px;
+            color: #777;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* GAMES */
+
+        .games {
+            background: rgba(5, 5, 5, 0.95);
+        }
+
+        .game-grid {
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .game-card {
+            min-height: 250px;
+
+            padding: 30px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.95),
+                    rgba(20, 0, 0, 0.6)
+                );
+
+            border: 1px solid #5a0000;
+            border-radius: 8px;
+
+            transition: 0.3s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px);
+            border-color: #e00000;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+        }
+
+        .game-card h3 {
+            font-size: 25px;
+            font-style: italic;
+            text-transform: uppercase;
+        }
+
+        .game-card p {
+            margin-top: 10px;
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        /* ÜBER UNS */
+
+        .about {
+            background: #050505;
+        }
+
+        .about-grid {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 25px;
+        }
+
+        .about-card {
+            padding: 40px;
+
+            background: #101010;
+
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+
+        .about-card h3 {
+            font-size: 25px;
+            font-style: italic;
+            text-transform: uppercase;
+
+            margin-bottom: 15px;
+        }
+
+        .about-card h3 span {
+            color: #e00000;
+        }
+
+        .about-card p {
+            color: #888;
+            line-height: 1.8;
+        }
+
+        /* SOCIALS */
+
+        .socials {
+            background: #080808;
+        }
+
+        .social-grid {
+            max-width: 1000px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .social-card {
+            padding: 40px 20px;
+
+            text-align: center;
+
+            background: #111;
+
+            border: 1px solid #333;
+            border-radius: 8px;
+
+            transition: 0.3s;
+        }
+
+        .social-card:hover {
+            transform: translateY(-8px);
+            border-color: #e00000;
+        }
+
+        .social-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .social-card h3 {
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+
+        .social-card p {
+            color: #777;
+            margin-top: 8px;
+            font-size: 13px;
+        }
+
+        /* DISCORD */
+
+        .discord {
+            padding: 120px 5%;
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(180, 0, 0, 0.25),
+                    transparent 60%
+                );
+        }
+
+        .discord-box {
+            max-width: 900px;
+            margin: auto;
+
+            padding: 70px 30px;
+
+            background: #090909;
+
+            border: 1px solid #444;
+            border-radius: 10px;
+        }
+
+        .discord-box h2 {
+            font-size: clamp(40px, 6vw, 70px);
+            font-style: italic;
+            text-transform: uppercase;
+        }
+
+        .discord-box h2 span {
+            color: #e00000;
+        }
+
+        .discord-box p {
+            max-width: 600px;
+            margin: 20px auto 30px;
+
+            color: #888;
+            line-height: 1.7;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 45px 20px;
+            text-align: center;
+
+            background: #020202;
+            border-top: 1px solid #222;
+
+            color: #666;
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: white;
+            letter-spacing: 3px;
+        }
+
+        footer span {
+            color: #e00000;
+        }
+
+        /* HANDY */
+
+        @media (max-width: 800px) {
+
+            .menu-button {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+
+                position: absolute;
+
+                top: 75px;
+                left: 0;
+
+                width: 100%;
+
+                flex-direction: column;
+                align-items: stretch;
+
+                gap: 0;
+
+                background: #090909;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links li a {
+                display: block;
+                padding: 18px 25px;
+
+                border-bottom: 1px solid #222;
+            }
+
+            .discord-button {
+                margin: 10px 20px;
+                text-align: center;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .game-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature {
+                border-bottom: 1px solid #333;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <nav>
+
+        <a href="#home" class="logo">
+            GHOST<span>WOLF</span>
+        </a>
+
+        <button
+            class="menu-button"
+            id="menuButton"
+            type="button"
+            aria-label="Menü öffnen">
+            ☰
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+
+            <li><a href="#home">Home</a></li>
+            <li><a href="#community">Community</a></li>
+            <li><a href="#games">Games</a></li>
+            <li><a href="#about">Über uns</a></li>
+            <li><a href="#socials">Socials</a></li>
+            <li><a href="#discord">Discord</a></li>
+
+            <li>
+                <a
+                    class="discord-button"
+                    href="https://discord.gg/ChyXKa38p5"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    💬 Discord beitreten
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <div>
+
+            <img
+                src="images/ghostwolf-logo.png"
+                alt="GhostWolf Community Logo"
+                class="hero-logo"
+                onerror="this.style.display='none';">
+
+            <h1>
+                Eine Community.
+                <br>
+                <span>Eine Leidenschaft.</span>
+            </h1>
+
+            <p>
+                Willkommen bei der GhostWolf Community –
+                Gaming, Trucking, gemeinsame Touren, Events,
+                Content und eine starke Gemeinschaft.
+                <br><br>
+                Wir sind ein Rudel. Wir sind GhostWolf!
+            </p>
+
+            <div class="buttons">
+
+                <a
+                    href="https://discord.gg/ChyXKa38p5"
+                    class="btn btn-red"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    🐺 Discord beitreten
+                </a>
+
+                <a
+                    href="https://youtube.com/@ighostwolfi"
+                    class="btn btn-dark"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    ▶ YouTube
+                </a>
+
+                <a
+                    href="https://www.tiktok.com/@delta_ghost_141"
+                    class="btn btn-dark"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    ♪ TikTok
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- COMMUNITY -->
+
+    <section class="section community" id="community">
+
+        <div class="section-title">
+
+            <small>Willkommen im Rudel</small>
+
+            <h2>
+                Unsere <span>Community</span>
+            </h2>
+
+            <p>
+                Gemeinsam spielen, lachen, fahren und erleben.
+                Bei GhostWolf steht die Gemeinschaft an erster Stelle.
+            </p>
+
+        </div>
+
+        <div class="feature-grid">
+
+            <div class="feature">
+
+                <div class="feature-icon">🐺</div>
+
+                <h3>Starke Gemeinschaft</h3>
+
+                <p>
+                    Gemeinsam statt allein.
+                    Jeder ist willkommen.
+                </p>
+
+            </div>
+
+            <div class="feature">
+
+                <div class="feature-icon">🎮</div>
+
+                <h3>Gaming</h3>
+
+                <p>
+                    Gemeinsame Games,
+                    Abende und Events.
+                </p>
+
+            </div>
+
+            <div class="feature">
+
+                <div class="feature-icon">🚛</div>
+
+                <h3>Trucking</h3>
+
+                <p>
+                    Touren, Konvois
+                    und gemeinsame Fahrten.
+                </p>
+
+            </div>
+
+            <div class="feature">
+
+                <div class="feature-icon">🔥</div>
+
+                <h3>Events</h3>
+
+                <p>
+                    Besondere Aktionen
+                    und Community-Events.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- GAMES -->
+
+    <section class="section games" id="games">
+
+        <div class="section-title">
+
+            <small>Unsere Welten</small>
+
+            <h2>
+                Unsere <span>Games</span>
+            </h2>
+
+            <p>
+                Hier sind einige Spiele, in denen das GhostWolf Rudel unterwegs ist.
+            </p>
+
+        </div>
+
+        <div class="game-grid">
+
+            <div class="game-card">
+                <h3>Ghost Recon Breakpoint</h3>
+                <p>
+                    Taktische Einsätze, Stealth und gemeinsame Missionen.
+                </p>
+            </div>
+
+            <div class="game-card">
+                <h3>Euro Truck Simulator 2</h3>
+                <p>
+                    Gemeinsam auf Europas Straßen unterwegs.
+                </p>
+            </div>
+
+            <div class="game-card">
+                <h3>Weitere Games</h3>
+                <p>
+                    Das Rudel entdeckt regelmäßig neue Spiele und Abenteuer.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ÜBER UNS -->
+
+    <section class="section about" id="about">
+
+        <div class="section-title">
+
+            <small>Das Rudel</small>
+
+            <h2>
+                Über <span>GhostWolf</span>
+            </h2>
+
+        </div>
+
+        <div class="about-grid">
+
+            <div class="about-card">
+
+                <h3>
+                    Wer sind <span>wir?</span>
+                </h3>
+
+                <p>
+                    GhostWolf ist eine Community für Menschen,
+                    die gemeinsam spielen, fahren, lachen und
+                    neue Abenteuer erleben möchten.
+                </p>
+
+            </div>
+
+            <div class="about-card">
+
+                <h3>
+                    Unsere <span>Mission</span>
+                </h3>
+
+                <p>
+                    Eine entspannte und starke Gemeinschaft aufzubauen,
+                    in der jeder willkommen ist und gemeinsam
+                    mit dem Rudel Spaß haben kann.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SOCIALS -->
+
+    <section class="section socials" id="socials">
+
+        <div class="section-title">
+
+            <small>Folge dem Rudel</small>
+
+            <h2>
+                Unsere <span>Socials</span>
+            </h2>
+
+        </div>
+
+        <div class="social-grid">
+
+            <a
+                href="https://discord.gg/ChyXKa38p5"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-card">
+
+                <div class="social-icon">💬</div>
+
+                <h3>Discord</h3>
+
+                <p>
+                    Tritt unserer Community bei.
+                </p>
+
+            </a>
+
+            <a
+                href="https://youtube.com/@ighostwolfi"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-card">
+
+                <div class="social-icon">▶</div>
+
+                <h3>YouTube</h3>
+
+                <p>
+                    Videos und Content von GhostWolf.
+                </p>
+
+            </a>
+
+            <a
+                href="https://www.tiktok.com/@delta_ghost_141"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-card">
+
+                <div class="social-icon">♪</div>
+
+                <h3>TikTok</h3>
+
+                <p>
+                    Kurze Videos und Highlights.
+                </p>
+
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- DISCORD -->
+
+    <section class="discord" id="discord">
+
+        <div class="discord-box">
+
+            <div class="social-icon">🐺</div>
+
+            <h2>
+                Werde Teil des <span>Rudels</span>
+            </h2>
+
+            <p>
+                Tritt der GhostWolf Community auf Discord bei,
+                lerne neue Leute kennen und erlebe gemeinsame
+                Gaming-Abenteuer, Touren und Events.
+            </p>
+
+            <a
+                href="https://discord.gg/ChyXKa38p5"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-red">
+
+                🐺 Jetzt Discord beitreten
+
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <strong>
+            GHOST<span>WOLF</span> COMMUNITY
+        </strong>
+
+        <br><br>
+
+        © 2026 GhostWolf Community – Gemeinsam als Rudel.
+
+    </footer>
+
+    <!-- JAVASCRIPT FÜR HANDY-MENÜ -->
+
+    <script>
+
+        const menuButton = document.getElementById("menuButton");
+        const navLinks = document.getElementById("navLinks");
+
+        menuButton.addEventListener("click", function () {
+            navLinks.classList.toggle("open");
+        });
+
+        const links = navLinks.querySelectorAll("a");
+
+        links.forEach(function (link) {
+
+            link.addEventListener("click", function () {
+                navLinks.classList.remove("open");
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>
